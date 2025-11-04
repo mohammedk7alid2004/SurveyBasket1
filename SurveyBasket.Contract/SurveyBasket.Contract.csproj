@@ -8,12 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
-    <PackageReference Include="Mapster" Version="7.4.0" />
-    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SurveyBasket.Dal\SurveyBasket.Dal.csproj" />
   </ItemGroup>
 
 </Project>

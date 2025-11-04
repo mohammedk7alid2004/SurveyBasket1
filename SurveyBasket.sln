@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36603.0 d17.14
+VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyBasket.Api", "SurveyBasket.Api\SurveyBasket.Api.csproj", "{BE30416D-953B-49DD-B5D0-FCAAB86D53E5}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyBasket.BLL", "SurveyBasket.BLL\SurveyBasket.BLL.csproj", "{7399AAA7-4F66-4F74-8984-EE8A0E9D5FB0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyBasket.Entities", "SurveyBasket.Entities\SurveyBasket.Entities.csproj", "{F78758D3-AFEE-469F-86B6-39DF6847132C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyBasket.Contract", "SurveyBasket.Contract\SurveyBasket.Contract.csproj", "{6383F78B-59EA-4325-B8F9-2F5E92E9416C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F78758D3-AFEE-469F-86B6-39DF6847132C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F78758D3-AFEE-469F-86B6-39DF6847132C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F78758D3-AFEE-469F-86B6-39DF6847132C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6383F78B-59EA-4325-B8F9-2F5E92E9416C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6383F78B-59EA-4325-B8F9-2F5E92E9416C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6383F78B-59EA-4325-B8F9-2F5E92E9416C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6383F78B-59EA-4325-B8F9-2F5E92E9416C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

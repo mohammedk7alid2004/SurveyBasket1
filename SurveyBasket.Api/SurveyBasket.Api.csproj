@@ -7,15 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SurveyBasket.BLL\SurveyBasket.BLL.csproj" />
+    <ProjectReference Include="..\SurveyBasket.Contract\SurveyBasket.Contract.csproj" />
+    <ProjectReference Include="..\SurveyBasket.Entities\SurveyBasket.Entities.csproj" />
   </ItemGroup>
 
 </Project>
