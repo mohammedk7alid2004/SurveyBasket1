@@ -1,9 +1,8 @@
-﻿using SurveyBasket.Contract.Contracts.Request;
-namespace SurveyBasket.Contract.Contracts.Validation;
+﻿namespace SurveyBasket.Contract.Contracts.Poll;
 
-public class CreatePollRequestValidator:AbstractValidator<CreatePollRequest>
+public class UpdatePollRequestValidator : AbstractValidator<UpdatePollRequest>
 {
-    public CreatePollRequestValidator()
+    public UpdatePollRequestValidator()
     {
         RuleFor(x => x.Title)
             .NotEmpty()

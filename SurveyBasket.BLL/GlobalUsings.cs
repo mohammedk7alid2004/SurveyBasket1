@@ -1,1 +1,15 @@
-﻿
+﻿global using Mapster;
+global using Microsoft.EntityFrameworkCore;
+global using SurveyBasket.Dal.Persistence;
+global using SurveyBasket.Entities.Entities;
+global using SurveyBasket.Contract.Contracts;
+global using SurveyBasket.Contract.Contracts.Authentication;
+global using System.Security.Claims;
+global using System.Text;
+global using Microsoft.IdentityModel.Tokens;
+global using System.ComponentModel.DataAnnotations;
+global using System.Security.Cryptography;
+global using Microsoft.AspNetCore.Identity;
+global using SurveyBasket.BLL.Authentication;
+global using System.IdentityModel.Tokens.Jwt;
+global using Microsoft.Extensions.Options;

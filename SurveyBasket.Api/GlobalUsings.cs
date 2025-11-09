@@ -5,3 +5,16 @@ global using FluentValidation.AspNetCore;
 global using Mapster;
 global using SurveyBasket.Api;
 global using SurveyBasket.BLL.Services;
+global using Microsoft.EntityFrameworkCore;
+global using SurveyBasket.Dal.Persistence;
+global using SurveyBasket.Contract.Contracts;
+global using Microsoft.AspNetCore.Identity.Data;
+global using Microsoft.AspNetCore.Identity;
+global using SurveyBasket.BLL.Authentication;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using SurveyBasket.BLL.Services;
+global using SurveyBasket.Contract.Contracts.Authentication;
+global using LoginRequest = Microsoft.AspNetCore.Identity.Data.LoginRequest;
+
+global using System.Text;
+global using Microsoft.IdentityModel.Tokens;
