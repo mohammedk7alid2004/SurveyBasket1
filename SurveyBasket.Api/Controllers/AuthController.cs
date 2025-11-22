@@ -9,18 +9,15 @@ public class AuthController(IAuthService authService) : ControllerBase
     [HttpPost("")]
     public async Task<IActionResult> GetTokenAsync([FromBody] LoginRequest request , [FromServices] IAuthService authService, CancellationToken cancellationToken = default)
     {
-        var authResponse = await _authService.GetTokenAsync(request.Email, request.Password, cancellationToken);
-        if (authResponse == null)
-            return Unauthorized();
-        return Ok(authResponse);
+        var authResult= await _authService.GetTokenAsync(request.Email, request.Password, cancellationToken);
+        return authResult.IsSuccess ? Ok(authResult.Value) : BadRequest();
     }
     [HttpPost("refresh")]
     public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken = default)
     {
-        var authResponse = await _authService.GetRefreshTokenAsync(request.Token, request.RefreshToken, cancellationToken);
-        if (authResponse == null)
-            return Unauthorized();
-        return Ok(authResponse);
+        var authResult = await _authService.GetRefreshTokenAsync(request.Token, request.RefreshToken, cancellationToken);
+        return authResult.IsSuccess ? Ok(authResult.Value) : BadRequest();
+
     }
     [HttpPost("revoke")]
     public async Task<IActionResult> RevokeRefreshTokenAsync([FromBody] RefreshTokenRequest request, CancellationToken cancellationToken = default)

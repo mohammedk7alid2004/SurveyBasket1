@@ -1,5 +1,3 @@
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,7 +17,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseHttpsRedirection();
+app.UseExceptionHandler();
+
+app.UseCors("allowAll");
+
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

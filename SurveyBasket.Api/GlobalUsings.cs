@@ -15,6 +15,8 @@ global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using SurveyBasket.BLL.Services;
 global using SurveyBasket.Contract.Contracts.Authentication;
 global using LoginRequest = Microsoft.AspNetCore.Identity.Data.LoginRequest;
-
 global using System.Text;
 global using Microsoft.IdentityModel.Tokens;
+global using Microsoft.AspNetCore.Authorization;
+global using SurveyBasket.BLL.Abstractions;
+global using SurveyBasket.Contract.Contracts.Poll;

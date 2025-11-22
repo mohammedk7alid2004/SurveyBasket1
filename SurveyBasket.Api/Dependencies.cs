@@ -1,10 +1,23 @@
 ﻿
+using MapsterMapper;
+using Microsoft.OpenApi.Models;
+using SurveyBasket.BLL.Services;
+using SurveyBasket.Contract.Mapping;
+
 namespace SurveyBasket.Api;
 public static class Dependencies
 {
     public static IServiceCollection AddDependencies(this IServiceCollection services ,IConfiguration configuration)
     {
         services.AddSwaggerServices();
+        services.AddCors(
+            options=>options.AddPolicy("allowAll"
+            ,builder=>builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader())
+            );
+        services.AddProblemDetails();
+        services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddBusinessServices();
         services.AddValidationServices();
         services.AddMappingServices();
@@ -56,13 +69,47 @@ public static class Dependencies
     public static IServiceCollection AddSwaggerServices(this IServiceCollection services)
     {
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "SurveyBasket.Api",
+                Version = "v1"
+            });
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "Type 'Bearer {token}' below."
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+        });
+
         return services;
     }
-
     public static IServiceCollection AddBusinessServices(this IServiceCollection services)
     {
         services.AddScoped<IPollService, PollService>();
+        services.AddScoped<IQuestionService,QuestionService>();
         return services;
     }
 
@@ -76,7 +123,12 @@ public static class Dependencies
 
     public static IServiceCollection AddMappingServices(this IServiceCollection services)
     {
-        services.AddMapster();
+        var config = TypeAdapterConfig.GlobalSettings;
+        config.Scan(typeof(MappingConfigurations).Assembly);
+
+        services.AddSingleton(config);
+        services.AddScoped<IMapper, ServiceMapper>();
+
         return services;
     }
 }
