@@ -15,6 +15,7 @@ global using SurveyBasket.Contract.Contracts;
 global using SurveyBasket.Contract.Contracts.Authentication;
 global using SurveyBasket.Dal.Persistence;
 global using SurveyBasket.Entities.Entities;
+global using SurveyBasket.Contract.Contracts.Results;
 
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;

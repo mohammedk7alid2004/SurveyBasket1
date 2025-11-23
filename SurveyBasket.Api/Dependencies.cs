@@ -111,6 +111,7 @@ public static class Dependencies
         services.AddScoped<IPollService, PollService>();
         services.AddScoped<IQuestionService,QuestionService>();
         services.AddScoped<IVoteService, VoteService>();
+        services.AddScoped<IResultService, ResultService>();
         return services;
     }
 

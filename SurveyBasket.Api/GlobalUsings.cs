@@ -22,3 +22,4 @@ global using SurveyBasket.BLL.Abstractions;
 global using SurveyBasket.Contract.Contracts.Poll;
 global using System.Security.Claims;
 
+global using SurveyBasket.Contract.Contracts.Results;
