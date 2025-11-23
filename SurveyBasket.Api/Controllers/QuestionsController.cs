@@ -24,7 +24,13 @@ public class QuestionsController(IQuestionService service) : ControllerBase
     public async Task<IActionResult>Add([FromRoute] int pollId, [FromBody]QuestionRequest request , CancellationToken cancellationToken)
     {
          var result = await _service.AddAsync(pollId, request , cancellationToken);
-        return result.IsSuccess ? CreatedAtAction(nameof(Get) , new {pollId , result.Value.Id},result.Value ) : result.ToProblem();
+        return result.IsSuccess
+            ? CreatedAtAction(
+                nameof(Get),
+                new { pollId = pollId, questionId = result.Value.Id },
+                result.Value
+              )
+            : result.ToProblem();
     }
     [HttpPut("{questionId}")]
     public async Task<IActionResult> Update([FromRoute] int pollId, [FromRoute] int questionId, [FromBody] QuestionUpdateRequest request , CancellationToken cancellationToken)

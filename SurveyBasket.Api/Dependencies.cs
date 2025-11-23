@@ -110,6 +110,7 @@ public static class Dependencies
     {
         services.AddScoped<IPollService, PollService>();
         services.AddScoped<IQuestionService,QuestionService>();
+        services.AddScoped<IVoteService, VoteService>();
         return services;
     }
 

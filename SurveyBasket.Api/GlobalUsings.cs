@@ -20,3 +20,5 @@ global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.AspNetCore.Authorization;
 global using SurveyBasket.BLL.Abstractions;
 global using SurveyBasket.Contract.Contracts.Poll;
+global using System.Security.Claims;
+
