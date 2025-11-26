@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddDependencies(builder.Configuration);
+builder.Services.AddDistributedMemoryCache();
 builder.Host.UseSerilog((Context, Configuration) =>
 {
     Configuration.ReadFrom.Configuration(Context.Configuration);
