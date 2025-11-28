@@ -1,6 +1,4 @@
-﻿using SurveyBasket.Contract.Contracts.Email;
-
-namespace SurveyBasket.BLL.Services;
+﻿namespace SurveyBasket.BLL.Services;
 
 public interface IAuthService
 {
