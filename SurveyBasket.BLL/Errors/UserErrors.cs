@@ -24,4 +24,8 @@ public static class UserErrors
 
     public static readonly Error EmailNotConfirmed =
         new("User.EmailNotConfirmed", "Please confirm your email before logging in.", StatusCodes.Status403Forbidden);
+    public static readonly Error EmailConfirmed =
+       new("User.EmailConfirmed", "This email is already Confirmed.", StatusCodes.Status400BadRequest);
+    public static readonly Error InvalidCode =
+        new("User.InvalidCode", "Invalid code.", StatusCodes.Status400BadRequest);
 }

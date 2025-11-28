@@ -1,7 +1,8 @@
 ﻿
 using MapsterMapper;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.OpenApi.Models;
-using SurveyBasket.BLL.Services;
+using SurveyBasket.BLL.Settings;
 using SurveyBasket.Contract.Mapping;
 
 namespace SurveyBasket.Api;
@@ -18,7 +19,7 @@ public static class Dependencies
             );
         services.AddProblemDetails();
         services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddBusinessServices();
+        services.AddBusinessServices(configuration);
         services.AddValidationServices();
         services.AddMappingServices();
         services.AddAuth(configuration);
@@ -27,7 +28,8 @@ public static class Dependencies
     }
     public static IServiceCollection AddAuth(this IServiceCollection services ,IConfiguration configuration )
     {
-        services.AddIdentity<ApplicationUser ,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+        services.AddIdentity<ApplicationUser ,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
         services.AddScoped<IAuthService, AuthService>();
         services.AddSingleton<IJwtProvider, JwtProvider>();
        // services.Configure<JwtOption>(configuration.GetSection(JwtOption.SectionName));
@@ -56,6 +58,12 @@ public static class Dependencies
                     ValidateIssuerSigningKey = true
                 };
             });
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequiredLength = 8;
+            options.SignIn.RequireConfirmedEmail = true;
+            options.User.RequireUniqueEmail = true;
+        });
         return services;
     }
     public static IServiceCollection AddConnectionString (this IServiceCollection services, IConfiguration configuration)
@@ -106,13 +114,16 @@ public static class Dependencies
 
         return services;
     }
-    public static IServiceCollection AddBusinessServices(this IServiceCollection services)
+    public static IServiceCollection AddBusinessServices(this IServiceCollection services,IConfiguration configuration)
     {
         services.AddScoped<IPollService, PollService>();
         services.AddScoped<IQuestionService,QuestionService>();
         services.AddScoped<IVoteService, VoteService>();
         services.AddScoped<IResultService, ResultService>();
         services.AddScoped<ICashService, CashService>();
+        services.AddScoped<IEmailSender, EmailService>();
+        services.Configure<MailSettings>(configuration.GetSection(nameof(MailSettings)));
+        services.AddHttpContextAccessor();
         return services;
     }
 
