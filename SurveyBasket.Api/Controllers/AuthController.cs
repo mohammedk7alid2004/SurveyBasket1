@@ -1,6 +1,8 @@
 ﻿namespace SurveyBasket.Api.Controllers;
 
 using SurveyBasket.Contract.Contracts.Email;
+using ResetPasswordRequest = Contract.Contracts.Authentication.ResetPasswordRequest;
+
 [Route("[controller]")]
 [ApiController]
 public class AuthController(IAuthService authService) : ControllerBase
@@ -36,6 +38,19 @@ public class AuthController(IAuthService authService) : ControllerBase
     public async Task<IActionResult> ResendConfirmation([FromBody] ResendConfrimatioEmailRequest request, CancellationToken cancellationToken = default)
     {
         var result = await _authService.ResendConfirmEmailAsync(request, cancellationToken);
+        return result.IsSuccess ? Ok() : result.ToProblem();
+    }
+    [HttpPost("forget-password")]
+    public async Task<IActionResult>ForgetPassword(ForgetPasswordRequest request, CancellationToken cancellationToken = default)
+    {
+        var result = await _authService.SendResetPasswordAsync(request, cancellationToken);
+        return result.IsSuccess? Ok() : result.ToProblem();
+    }
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+    {
+        var result = await _authService.ResetPassword(request);
+
         return result.IsSuccess ? Ok() : result.ToProblem();
     }
 

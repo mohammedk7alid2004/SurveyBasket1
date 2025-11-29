@@ -2,6 +2,7 @@
 using MapsterMapper;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.OpenApi.Models;
+using SurveyBasket.BLL.Services;
 using SurveyBasket.BLL.Settings;
 using SurveyBasket.Contract.Mapping;
 
@@ -152,6 +153,7 @@ public static class Dependencies
         services.AddScoped<ICashService, CashService>();
         services.AddScoped<IEmailSender, EmailService>();
         services.AddScoped<INotificationsService , NotificationsService>();
+        services.AddScoped<IUserService, UserService>();
         services.Configure<MailSettings>(configuration.GetSection(nameof(MailSettings)));
         services.AddHttpContextAccessor();
 
